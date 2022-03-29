@@ -60,11 +60,11 @@ while True:
             if event.type == pygame.K_RIGHT:
                 print("Presionado derecha")
                 currentPositionY += 1
-        if event.type == pygame.K_s:
-            if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
+            if event.type == pygame.K_LEFT:
                 print("Presionado izquierda")
                 currentPositionX += 1
-            if event.type == pygame.K_LEFT:
+            if event.type == pygame.KEYDOWN:
                 print("Presionado abajo")
                 currentPositionY -= 1
 
