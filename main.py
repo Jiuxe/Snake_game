@@ -36,40 +36,55 @@ currentPositionX = nxC // 2
 currentPositionY = nyC // 2
 
 # Direcciones
-UP = 771
+UP = 1
 RIGHT = 2
 DOWN = 3
 LEFT = 4
 
 # Inicializamos movimiento
-# event = pygame.K_w
+move = 1
 
 
-while True:
+while currentPositionX < nxC and currentPositionY < nyC and currentPositionX > 0 and currentPositionY > 0:
 
     screen.fill(bg)
     time.sleep(0.1)
     drawPoligon(currentPositionX, currentPositionY, 0)
 
     for event in pygame.event.get():
-        print(event.type)
-        if event.type == pygame.KEYUP:
-            if event.type == pygame.KEYUP:
-                print("Presionado arriba")
-                currentPositionX -= 1
-            if event.type == pygame.K_RIGHT:
-                print("Presionado derecha")
-                currentPositionY += 1
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            pygame.quit()
+            quit()
+
         if event.type == pygame.KEYDOWN:
-            if event.type == pygame.K_LEFT:
-                print("Presionado izquierda")
-                currentPositionX += 1
-            if event.type == pygame.KEYDOWN:
-                print("Presionado abajo")
-                currentPositionY -= 1
+            if event.key == pygame.K_w and move != DOWN:
+                move = UP
+            if event.key == pygame.K_d and move != LEFT:
+                move = RIGHT
+            if event.key == pygame.K_s and move != UP:
+                move = DOWN
+            if event.key == pygame.K_a and move != RIGHT:
+                move = LEFT
+
+    if move == UP:
+        currentPositionY -= 1
+    if move == RIGHT:
+        currentPositionX += 1
+    if move == DOWN:
+        currentPositionY += 1
+    if move == LEFT:
+        currentPositionX -= 1
 
     drawPoligon(currentPositionX, currentPositionY, 1)
 
     pygame.display.flip()
 
+print("Fin del juego")
+
+# pulsar tecla para salir
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            pygame.quit()
+            quit()
 
